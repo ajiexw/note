@@ -10,7 +10,7 @@ import site_helper as sh # 注意，和shell没有关系, 只是一个简写而�
 #web.config.debug = False
 
 urls = (
-# zarkpy reserved
+# note reserved
 '/cgi/index','pagecontroller.Index', # pagecontroller/Index.py
 '/cgi/insert','pagecontroller.Insert', # pagecontroller/Insert.py
 '/cgi/update','pagecontroller.Update', # pagecontroller/Update.py

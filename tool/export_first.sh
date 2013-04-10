@@ -11,8 +11,8 @@ if [ "x${rev1}" != "xexp" ] && [ "x${rev1}" != "xmaster" ]; then
     exit 1
 fi
 
-cd /opt/git/zarkpy.git
-git archive master -o /tmp/zarkpy.tgz
+cd /opt/git/note.git
+git archive master -o /tmp/note.tgz
 ret=$?
 if [ "x${ret}" != "x0" ]; then
     echo "An error occurs when archiving."
@@ -21,12 +21,12 @@ fi
 
 if [ "${rev1}"="master" ]; then
 
-    mkdir -p /opt/zarkpy
-    cd /opt/zarkpy
-    tar xf /tmp/zarkpy.tgz
+    mkdir -p /opt/note
+    cd /opt/note
+    tar xf /tmp/note.tgz
 
-    cp /opt/zarkpy/conf/nginx/master /etc/nginx/sites-available/zarkpy-master
-    ln -s /etc/nginx/sites-available/zarkpy-master /etc/nginx/sites-enabled/zarkpy-master
+    cp /opt/note/conf/nginx/master /etc/nginx/sites-available/note-master
+    ln -s /etc/nginx/sites-available/note-master /etc/nginx/sites-enabled/note-master
     nginx -t
     ret=$?
     if [ "x${ret}" != "x0" ]; then
@@ -36,18 +36,18 @@ if [ "${rev1}"="master" ]; then
     /etc/init.d/nginx reload
 
     echo "Please type mysql root password:"
-    mysql -uroot -p  --default-character-set=utf8 < /opt/zarkpy/doc/sql/init_database.sql
+    mysql -uroot -p  --default-character-set=utf8 < /opt/note/doc/sql/init_database.sql
 
-    sh /opt/zarkpy/tool/export.sh master
+    sh /opt/note/tool/export.sh master
 
 
 elif [ "${rev1}"="exp" ]; then
-    mkdir -p /opt/zarkpy_exp
-    cd /opt/zarkpy_exp
-    tar xf /tmp/zarkpy.tgz
+    mkdir -p /opt/note_exp
+    cd /opt/note_exp
+    tar xf /tmp/note.tgz
 
-    cp /opt/zarkpy_exp/conf/nginx/exp /etc/nginx/sites-available/zarkpy-exp
-    ln -s /etc/nginx/sites-available/zarkpy-exp /etc/nginx/sites-enabled/zarkpy-exp
+    cp /opt/note_exp/conf/nginx/exp /etc/nginx/sites-available/note-exp
+    ln -s /etc/nginx/sites-available/note-exp /etc/nginx/sites-enabled/note-exp
     nginx -t
     ret=$?
     if [ "x${ret}" != "x0" ]; then
@@ -56,6 +56,6 @@ elif [ "${rev1}"="exp" ]; then
     fi
     /etc/init.d/nginx reload
 
-    sh /opt/zarkpy_exp/tool/export.sh exp
+    sh /opt/note_exp/tool/export.sh exp
 
 fi

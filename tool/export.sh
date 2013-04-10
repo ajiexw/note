@@ -11,8 +11,8 @@ if [ "x${rev1}" != "xexp" ] && [ "x${rev1}" != "xmaster" ]; then
     exit 1
 fi
 
-cd /opt/git/zarkpy.git
-git archive ${rev1} -o /tmp/zarkpy.tgz
+cd /opt/git/note.git
+git archive ${rev1} -o /tmp/note.tgz
 ret=$?
 if [ "x${ret}" != "x0" ]; then
     echo "An error occurs when archiving."
@@ -20,29 +20,29 @@ if [ "x${ret}" != "x0" ]; then
 fi
 
 if [ "${rev1}"="master" ]; then
-    cd /opt/zarkpy
+    cd /opt/note
 elif [ "${rev1}"="exp" ]; then
-    cd /opt/zarkpy_exp
+    cd /opt/note_exp
 fi
 
-tar xf /tmp/zarkpy.tgz
+tar xf /tmp/note.tgz
 
 if [ "${rev1}"="master" ]; then
-    sed -i "s/#\s*web.config.debug\s*=\s*False/web.config.debug = False/"  /opt/zarkpy/web/cgi/app.py
-    sed -i "s/'HOST_NAME'\s*:\s*'http:\/\/me.zarkpy.com'/'HOST_NAME' : 'http:\/\/zarkpy.com'/"  /opt/zarkpy/web/cgi/site_helper.py
-    python /opt/zarkpy/web/cgi/site_helper.py init_dir
-    chown www-data:www-data -R /opt/zarkpy
-    /opt/zarkpy/tool/launch.sh restart
+    sed -i "s/#\s*web.config.debug\s*=\s*False/web.config.debug = False/"  /opt/note/web/cgi/app.py
+    sed -i "s/'HOST_NAME'\s*:\s*'http:\/\/me.note.com'/'HOST_NAME' : 'http:\/\/note.com'/"  /opt/note/web/cgi/site_helper.py
+    python /opt/note/web/cgi/site_helper.py init_dir
+    chown www-data:www-data -R /opt/note
+    /opt/note/tool/launch.sh restart
 
 elif [ "${rev1}"="exp" ]; then
-    sed -i "s/#\s*web.config.debug\s*=\s*False/web.config.debug = False/"  /opt/zarkpy_exp/web/cgi/app.py
-    sed -i "s/'HOST_NAME'\s*:\s*'http:\/\/me.zarkpy.com'/'HOST_NAME' : 'http:\/\/exp.zarkpy.com'/"  /opt/zarkpy_exp/web/cgi/site_helper.py
-    sed -i "s/'APP_ROOT_PATH'\s*:\s*'\/opt\/zarkpy\/'/'APP_ROOT_PATH' : '\/opt\/zarkpy_exp\/'/"  /opt/zarkpy_exp/web/cgi/site_helper.py
-    sed -i "s/'APP_PORT'\s*:\s*10000/'APP_PORT' : 10001/" /opt/zarkpy_exp/web/cgi/site_helper.py
-    sed -i "s/'SESSION_PATH'\s*:\s*'\/opt\/zarkpy\/session'/'SESSION_PATH' : '\/opt\/zarkpy_exp\/session'/"  /opt/zarkpy_exp/web/cgi/site_helper.py
-    sed -i "s/'ERROR_LOG_PATH'\s*:\s*'\/opt\/zarkpy\/log\/error.log'/'ERROR_LOG_PATH' : '\/opt\/zarkpy_exp\/log\/error.log'/"  /opt/zarkpy_exp/web/cgi/site_helper.py
-    python /opt/zarkpy_exp/web/cgi/site_helper.py init_dir
-    chown www-data:www-data -R /opt/zarkpy_exp
-    /opt/zarkpy_exp/tool/launch-exp.sh restart
+    sed -i "s/#\s*web.config.debug\s*=\s*False/web.config.debug = False/"  /opt/note_exp/web/cgi/app.py
+    sed -i "s/'HOST_NAME'\s*:\s*'http:\/\/me.note.com'/'HOST_NAME' : 'http:\/\/exp.note.com'/"  /opt/note_exp/web/cgi/site_helper.py
+    sed -i "s/'APP_ROOT_PATH'\s*:\s*'\/opt\/note\/'/'APP_ROOT_PATH' : '\/opt\/note_exp\/'/"  /opt/note_exp/web/cgi/site_helper.py
+    sed -i "s/'APP_PORT'\s*:\s*10040/'APP_PORT' : 10041/" /opt/note_exp/web/cgi/site_helper.py
+    sed -i "s/'SESSION_PATH'\s*:\s*'\/opt\/note\/session'/'SESSION_PATH' : '\/opt\/note_exp\/session'/"  /opt/note_exp/web/cgi/site_helper.py
+    sed -i "s/'ERROR_LOG_PATH'\s*:\s*'\/opt\/note\/log\/error.log'/'ERROR_LOG_PATH' : '\/opt\/note_exp\/log\/error.log'/"  /opt/note_exp/web/cgi/site_helper.py
+    python /opt/note_exp/web/cgi/site_helper.py init_dir
+    chown www-data:www-data -R /opt/note_exp
+    /opt/note_exp/tool/launch-exp.sh restart
 
 fi

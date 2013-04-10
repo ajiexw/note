@@ -23,13 +23,13 @@ app_errors = StringIO.StringIO()
 app = TestApp(_app.wsgifunc(), extra_environ={'wsgi.errors': app_errors})
 
 # 用于默认注册\登录的用户信息
-default_user = dict(email='test@zarkpy.com', password='123456', name='zarkpy')
+default_user = dict(email='test@note.com', password='123456', name='note')
 
 # 因为app在post时不能准确地向webpy程序传递参数，这可能是一个bug, 为paste.fixture hack
 def hackForInputs(f):
     def newInputs():
-        if web.ctx.env.get('wsgi.input.zarkpy.post.hack', None):
-            return web.ctx.env.get('wsgi.input.zarkpy.post.hack')
+        if web.ctx.env.get('wsgi.input.note.post.hack', None):
+            return web.ctx.env.get('wsgi.input.note.post.hack')
         else:
             return f()
     return newInputs
@@ -74,7 +74,7 @@ class AppTest(unittest.TestCase):
         if not isinstance(params, web.Storage):
             params = sh.storage(params)
         # hack for use paste.fixture module test app.py
-        environ['wsgi.input.zarkpy.post.hack'] = params
+        environ['wsgi.input.note.post.hack'] = params
         res = app.post(url, params, extra_environ=environ, expect_errors=True)
         return self._processResponse(res)
 

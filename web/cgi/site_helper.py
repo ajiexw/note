@@ -6,25 +6,25 @@ from urlparse import urlparse
 
 # 程序的配置表. 注意文件夹路径必须以/结束
 config = web.Storage({
-    'APP_ROOT_PATH' :   '/opt/zarkpy/',
-    'APP_PORT' :        10000,      # 程序运行的端口号，需与nginx配置的一致
-    'SESSION_PATH' :    '/opt/zarkpy/session/', # session存放路径
+    'APP_ROOT_PATH' :   '/opt/note/',
+    'APP_PORT' :        10040,      # 程序运行的端口号，需与nginx配置的一致
+    'SESSION_PATH' :    '/opt/note/session/', # session存放路径
     'COOKIE_EXPIRES' :  7 * 24 * 3600,  # cookie过期时间
     'SESSION_EXPIRES' : 24 * 3600,  # session过期时间
     'DB_HOST' : '127.0.0.1',  # mysql数据库host
-    'DB_DATABASE' : 'zarkpy', # mysql数据库名称
-    'DB_USER' : 'zarkpy',     # mysql数据库用户名
-    'DB_PASSWORD' : 'zarkpy_db_password', # mysql数据库连接密码
+    'DB_DATABASE' : 'note', # mysql数据库名称
+    'DB_USER' : 'note',     # mysql数据库用户名
+    'DB_PASSWORD' : 'note_db_password', # mysql数据库连接密码
     'DB_TIMEOUT' : 800 * 3600,   # 连接超时时间, 默认800小时
     'DB_CHARSET' : 'utf8',
-    'UPLOAD_IMAGE_PATH' : '/opt/zarkpy/web/img/upload/', # 上传图片存放目录
+    'UPLOAD_IMAGE_PATH' : '/opt/note/web/img/upload/', # 上传图片存放目录
     'UPLOAD_IMAGE_URL'  : '/img/upload/', # 访问上传图片的相对路径
     # 程序异常log,小心,如果有太多的error的话可能会导致写日志的锁等待,导致程序响应慢
-    'ERROR_LOG_PATH' :  '/opt/zarkpy/log/error.log',
+    'ERROR_LOG_PATH' :  '/opt/note/log/error.log',
     'FOOT_LOG_PATH' :   '',   # 访问log, 一般情况下可以不使用
-    'SECRET_KEY' :      'zarkpy',   # 程序密匙,每个新项目务必修改此key
-    'HOST_NAME' :       'http://me.zarkpy.com',
-    'MAIL_SENDER' :     'noreply@zarkpy.com', # 邮件的默认发送者
+    'SECRET_KEY' :      'note',   # 程序密匙,每个新项目务必修改此key
+    'HOST_NAME' :       'http://me.note.com',
+    'MAIL_SENDER' :     'noreply@note.com', # 邮件的默认发送者
     'IS_TEST' :       False, # 是否正在测试，测试时会被修改为True
 })
 
@@ -232,7 +232,7 @@ def setCookie(key, value):
 
 # 发送邮件，需要已设置exim4以及mail程序, 以及exim4.conf中的域名指向你的服务器ip
 # 安装命令: sudo aptitude install exim4 heirloom-mailx
-# 使用配置: cp /opt/zarkpy/conf/exim4.conf /etc/exim4/exim4.conf
+# 使用配置: cp /opt/note/conf/exim4.conf /etc/exim4/exim4.conf
 #           sudo /etc/init.d/exim4 restart
 # 发送命令: cat content_file | mail -s subject -r sender@domain.com -B receiver
 def sendMail(email, subject, content, sender=None):

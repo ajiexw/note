@@ -1,4 +1,4 @@
-zarkpy
+note
 ======
 
-一些用python建站的经验
+基于zarkpy的个人Blog
