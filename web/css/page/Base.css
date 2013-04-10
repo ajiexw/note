@@ -21,6 +21,7 @@ h1,h2,h3,h4,h5 { color:#333; margin:0px; }
 
 /* content */
 .content { width:830px; height:1000px; margin:0px auto; margin-top:40px; background:url(/img/page/content_bg.png); padding:15px; }
-.left_box { float:left; width:220px; height:200px; background-color:#fff; border-radius:5px; }
-.right_box { float:right; width:595px; background-color:#fff; border-radius:5px; }
-.right_box h2 { border-bottom:1px solid #e8e8e8; padding:12px; }
+.right_box { float:right; }
+.right_wrap { width:216px; padding:12px; margin-bottom:12px; background-color:#f9f9f9; border-radius:5px; }
+.left_box { float:left; width:575px; background-color:#f9f9f9; border-radius:5px; }
+.left_box h2 { border-bottom:1px solid #e8e8e8; padding:12px; }

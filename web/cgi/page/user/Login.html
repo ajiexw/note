@@ -1,29 +1,31 @@
 $def with(error_info='', email='', referer='')
 
-$if sh.session.is_login:
-    欢迎: $sh.session.name
-    <a href="/logout" >退出</a>
-    <br/>
-$else:
-    <form action="/login" method="POST" >
-        <h2>会员登录</h2>
-        <span>$error_info</span>
+<div style="background:#fff;padding:12px;height:970px;">
+    $if sh.session.is_login:
+        欢迎: $sh.session.name
+        <a href="/logout" >退出</a>
+        <br/>
+    $else:
+        <form action="/login" method="POST">
+            <h2>会员登录</h2>
+            <span>$error_info</span>
 
-        $if referer:
-            <input type="hidden" name="referer" value="$referer" />
+            $if referer:
+                <input type="hidden" name="referer" value="$referer" />
 
-        <span>Email:</span>
+            <span>Email:</span>
 
-        <input type="text" name="email" value="$email" />
+            <input type="text" name="email" value="$email" />
 
-        <span>密码:</span>
-        <input type="password" autocomplete="off" value="" name="password" />
+            <span>密码:</span>
+            <input type="password" autocomplete="off" value="" name="password" />
 
-        <input type="checkbox" name="remember_me" checked="checked" >记住帐号</input>
+            <input type="checkbox" name="remember_me" checked="checked" >记住帐号</input>
 
-        <a href="/accounts/forget-password" >忘记密码?</a>
+            <a href="/accounts/forget-password" >忘记密码?</a>
 
-        <input type="submit" value="登录" />
-    </form>
+            <input type="submit" value="登录" />
+        </form>
 
-<a href="/register" >注册账号</a>
+    <a href="/register" >注册账号</a>
+</div>
