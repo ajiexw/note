@@ -24,6 +24,8 @@ urls = (
 '/cgi/accounts/reset-password','pagecontroller.user.ResetPassword', # pagecontroller/user/ResetPassword.py
 '/cgi/accounts/portrait','pagecontroller.user.Portrait', # pagecontroller/user/Portrait.py
 '/cgi/update-portrait','pagecontroller.user.Portrait', # pagecontroller/user/Portrait.py
+'/cgi/note/add','pagecontroller.NoteAdd', # pagecontroller/NoteAdd.py
+'/cgi/note/(\d*)','pagecontroller.Note', # pagecontroller/Note.py
 
 '/cgi/admin','editorcontroller.Index', # editorcontroller/Index.py
 '/cgi/admin/login','editorcontroller.user.Login', # editorcontroller/user/Login.py

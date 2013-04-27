@@ -7,8 +7,7 @@ $def with(sub_page)
         <title>$sub_page.title</title>
     $else:
         <title>On The Road</title>
-    <link rel="favicon icon" type="image/png" href="/img/page/favicon.ico" />
-    <link rel="Shortcut Icon" type="image/x-icon" href="/img/page/favicon.ico" />
+    <link rel="favicon icon" type="image/png" href="/img/page/tt.png" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="ajiex.com" /> 
@@ -38,13 +37,14 @@ $def with(sub_page)
             $if sh.session.is_login:
                 $sh.session.name
                 <a href="/logout" >退出</a>
+                <a href="/note/add" >写日记</a>
             $else:
                 写任务
             </div>
         </div>
     </div>
 
-    <div class="content">
+    <div class="content clearfix">
         $:sub_page
     </div>
 

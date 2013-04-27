@@ -6,4 +6,8 @@ import site_helper as sh
 class Index:
 
     def GET(self):
-        return sh.page.Index(sh.storage(locals()))
+        notes = sh.model('Note').all({'paging': True, 'paging_volume': 15, 'orderby':'Noteid desc'})
+        for note in notes:
+            note.title = sh.getUnicodeSummary(note.content, 25)
+            note.summary = sh.getUnicodeSummary(note.content, 200)
+        return sh.page.Index(notes)

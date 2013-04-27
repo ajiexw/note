@@ -1,0 +1,11 @@
+$def with()
+
+<div style="background:#fff;padding:15px;">
+    <form action="/note/add" method="POST">
+        <h3 style="padding:6px 0px 10px;">$datetime.now().strftime('%Y-%m-%d %H:%M')</h3>
+        <input type="text" name="Userid" class="hidden" value="$sh.session.id" />
+        <textarea name="content" style="width:790px;height:450px;padding:5px;border:1px solid #bbb;"></textarea>
+        <br/>
+        <input type="submit" value="写好了" />
+    </form>
+</div>

@@ -301,6 +301,13 @@ def proxyDo(user_id, func, *params):
 
     return res
 
+def getUnicodeSummary(string, length):
+    if len(string.decode('utf-8')) > length:
+        content_summary = string.decode('utf-8')[:length].encode('utf-8')
+    else:
+        content_summary = None
+    return content_summary
+
 def imageSize(image_url):
     try:
         return Image.open(urlToPath(image_url)).size
@@ -311,3 +318,4 @@ def imageSize(image_url):
 for k, v in config.items():
     if k.endswith('_PATH'):
         autoMkdir(v)
+

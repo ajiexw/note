@@ -1,20 +1,10 @@
-$def with(notes)
+$def with(note)
 
 <div class="left_box">
-    <h2>列表</h2>
-    <ul class="note_list">
-        $for note in notes:
-            $ style = 'padding-top:0px; border-top:none;' if loop.first else ''
-            <li style="$style">
-                <a href="/note/$note.Noteid" class="note_title">$note.title...</a>
-                <div style="line-height:25px; font-size:12px;">
-                    $if note.summary:
-                        $note.summary...
-                    $else:
-                        $note.content
-                </div>
-            </li>
-    </ul>
+    <h2 style="margin-top:8px;">$note.title...</h2>
+    <pre style="padding:12px;white-space:pre-wrap;word-wrap:break-word;text-align:justify;line-height:25px; font-size:12px;">
+        $note.content
+    </pre>
 </div>
 <div class="right_box">
     <div class="right_wrap clearfix">
